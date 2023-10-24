@@ -310,4 +310,15 @@ public class DriverController {
             return "실패";
         }
     }
+
+    // 기사님의 좌표기반으로 1m 안에 해당 정류장이 들어오면 delete 될 수 있도록
+    @PostMapping("/driver/update")
+    public void updatePassengers(
+            @RequestParam(name = "name") String name,
+            @RequestParam(name = "bus_uid") String bus_uid,
+            @RequestParam(name = "bus_num") String bus_num,
+            @RequestParam("phone_num")String phone_num,
+            @RequestParam("company")String company) throws IOException {
+        driverService.update(bus_uid, name, phone_num, company, bus_num);
+    }
 }

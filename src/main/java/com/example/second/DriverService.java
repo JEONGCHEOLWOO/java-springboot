@@ -59,14 +59,26 @@ public class DriverService {
 
 
     // 기사님 수정 ( 승객이 등록될 때 수정됨 )
-    public Driver update(String bus_uid, String bus_stop, String user_id){
+    public Driver update(String bus_uid, String name, String phone_num, String company, String bus_num){
         Driver updateDriver = driverRepository.findByUid(bus_uid);
-//        updateDriver.setBus_stop(bus_stop);
-//        updateDriver.setUser_id(user_id);
+        if(name != null){
+            updateDriver.setName(name);
+        }
+        if(phone_num != null){
+            updateDriver.setPhone_num(phone_num);
+        }
+        if(company != null){
+            updateDriver.setCompany(company);
+        }
+        if(bus_num != null){
+            updateDriver.setBus_num(bus_num);
+        }
 
         driverRepository.save(updateDriver); // 변경 내용을 저장
 
         return updateDriver;
     }
+
+
 
 }
