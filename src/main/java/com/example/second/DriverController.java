@@ -277,10 +277,28 @@ public class DriverController {
     // 기사님의 좌표기반으로 1m 안에 해당 정류장이 들어오면 delete 될 수 있도록
     @PostMapping("/driver/update")
     public void updatePassengers(
-            @RequestParam("x")String x,
-            @RequestParam("y")String y) throws IOException {
+            @RequestParam(name = "name") String name,
+            @RequestParam(name = "bus_uid") String bus_uid,
+            @RequestParam(name = "bus_num") String bus_num,
+            @RequestParam(name = "phone_num")String phone_num,
+            @RequestParam(name = "company")String company) throws IOException {
+        if(isValidDriver(bus_uid)){
+            driverService.update(bus_uid, name, phone_num, company, bus_num);
+            System.out.println("driver update 성공");
+        }
+        else{
+            System.out.println("driver update 실패");
+        }
+    }
 
-
+    private boolean isValidDriver(String bus_uid){
+        if(driverService.findByUid(bus_uid) != null){
+            Driver d = driverService.findByUid(bus_uid);
+            driverService.update(bus_uid, d.getName(), d.getPhone_num(), d.getCompany(), d.getBus_num());
+            return true;
+        }else{
+            return false;
+        }
     }
 //    @GetMapping("/driver/get/busStops")
 //    public List<String> busStops(
@@ -311,14 +329,6 @@ public class DriverController {
         }
     }
 
-    // 기사님의 좌표기반으로 1m 안에 해당 정류장이 들어오면 delete 될 수 있도록
-//    @PostMapping("/driver/update")
-//    public void updatePassengers(
-//            @RequestParam(name = "name") String name,
-//            @RequestParam(name = "bus_uid") String bus_uid,
-//            @RequestParam(name = "bus_num") String bus_num,
-//            @RequestParam("phone_num")String phone_num,
-//            @RequestParam("company")String company) throws IOException {
-//        driverService.update(bus_uid, name, phone_num, company, bus_num);
-//    }
+
+
 }
