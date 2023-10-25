@@ -61,8 +61,9 @@ public class DriverService {
 
     // 기사님 수정 ( 승객이 등록될 때 수정됨 )
     public Driver update(String bus_uid, String name, String phone_num, String company, String bus_num){
+        System.out.println("driveservice"+ bus_uid);
         Driver updateDriver = driverRepository.findByUid(bus_uid);
-        System.out.println(updateDriver);
+
         if(name != null){
             updateDriver.setName(name);
             System.out.println("error name");
