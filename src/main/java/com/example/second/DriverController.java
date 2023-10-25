@@ -150,8 +150,10 @@ public class DriverController {
     // 전달받은 bus_uid 값으로 특정 버스 기사님 정보 전달해주기
     @PostMapping("/driver/detail")
     public Driver detailDriver(@RequestParam(name = "bus_uid")String bus_uid){
+        System.out.println(bus_uid);
         Driver d;
         d = driverService.findByUid(bus_uid);
+        System.out.println(d);
         return d;
     }
 
@@ -276,18 +278,23 @@ public class DriverController {
 
     // 기사님의 좌표기반으로 1m 안에 해당 정류장이 들어오면 delete 될 수 있도록
     @PostMapping("/driver/update")
-    public void updateDriver(
+    public Driver updateDriver(
             @RequestParam(name = "bus_uid") String bus_uid,
             @RequestParam(name = "name") String name,
             @RequestParam(name = "phone_num") String phone_num,
             @RequestParam(name = "company") String company,
             @RequestParam(name = "bus_num") String bus_num) {
+        System.out.println(bus_uid + " " + name + " " + phone_num + " " + company + " " + bus_num);
         if (isValidDriver(bus_uid)) {
-            driverService.update(bus_uid, name, phone_num, company, bus_num);
+            Driver driver = driverService.update(bus_uid, name, phone_num, company, bus_num);
             System.out.println("Driver update 성공");
+            return driver;
         } else {
             System.out.println("Driver update 실패");
+            return null;
         }
+
+
     }
 
     private boolean isValidDriver(String bus_uid) {
