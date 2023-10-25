@@ -285,8 +285,9 @@ public class DriverController {
             @RequestParam(name = "company") String company,
             @RequestParam(name = "bus_num") String bus_num) {
         System.out.println(bus_uid + " " + name + " " + phone_num + " " + company + " " + bus_num);
-        if (isValidDriver(bus_uid)) {
+        if (true) {
             Driver driver = driverService.update(bus_uid, name, phone_num, company, bus_num);
+            System.out.println("1234" + " " + driver);
             System.out.println("Driver update 성공");
             return driver;
         } else {
