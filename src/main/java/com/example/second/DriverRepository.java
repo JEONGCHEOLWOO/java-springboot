@@ -16,12 +16,20 @@ public class DriverRepository {
     public void save(Driver d){
         em.persist(d);
     }
+    public void save2(List<Driver> d){
+        em.persist(d);
+    }
 
     // Read : 버스 번호판으로 찾기
     public Driver findByUid(String findBusUid){
         return em.createQuery("SELECT d FROM Driver d WHERE d.bus_uid = :findBusUid", Driver.class)
                 .setParameter("findBusUid", findBusUid)
                 .getSingleResult();
+    }
+    public List<Driver> findByUid2(String findBusUid){
+        return em.createQuery("SELECT d FROM Driver d WHERE d.bus_uid = :findBusUid", Driver.class)
+                .setParameter("findBusUid", findBusUid)
+                .getResultList();
     }
     // 기사님 고유 id로 찾기
     public Driver findById(Integer id){

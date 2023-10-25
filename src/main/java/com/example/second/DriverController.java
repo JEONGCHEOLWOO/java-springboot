@@ -278,7 +278,7 @@ public class DriverController {
 
     // 기사님의 좌표기반으로 1m 안에 해당 정류장이 들어오면 delete 될 수 있도록
     @PostMapping("/driver/update")
-    public Driver updateDriver(
+    public List<Driver> updateDriver(
             @RequestParam(name = "bus_uid") String bus_uid,
             @RequestParam(name = "name") String name,
             @RequestParam(name = "phone_num") String phone_num,
@@ -286,7 +286,7 @@ public class DriverController {
             @RequestParam(name = "bus_num") String bus_num) {
         System.out.println(bus_uid + " " + name + " " + phone_num + " " + company + " " + bus_num);
 
-        Driver driver = driverService.update(bus_uid, name, phone_num, company, bus_num);
+        List driver = driverService.update(bus_uid, name, phone_num, company, bus_num);
         System.out.println("1234" + " " + driver);
         System.out.println("Driver update 성공");
         return driver;

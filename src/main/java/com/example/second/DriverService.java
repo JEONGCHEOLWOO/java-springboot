@@ -60,28 +60,27 @@ public class DriverService {
 
 
     // 기사님 수정 ( 승객이 등록될 때 수정됨 )
-    public Driver update(String bus_uid, String name, String phone_num, String company, String bus_num){
+    public List<Driver> update(String bus_uid, String name, String phone_num, String company, String bus_num){
         System.out.println("driveservice"+ bus_uid);
-        Driver updateDriver = driverRepository.findByUid(bus_uid);
+        List updateDriver = driverRepository.findByUid2(bus_uid);
 
         if(name != null){
-            updateDriver.setName(name);
             System.out.println("error name");
         }
         if(phone_num != null){
-            updateDriver.setPhone_num(phone_num);
             System.out.println("error phone_num");
         }
         if(company != null){
-            updateDriver.setCompany(company);
             System.out.println("error company");
         }
         if(bus_num != null){
-            updateDriver.setBus_num(bus_num);
             System.out.println("error bus_num");
         }
+        if(updateDriver == null){
+            System.out.println("error null");
+        }
 
-        driverRepository.save(updateDriver); // 변경 내용을 저장
+        driverRepository.save2(updateDriver); // 변경 내용을 저장
 
         return updateDriver;
     }
