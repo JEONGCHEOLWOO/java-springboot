@@ -54,8 +54,18 @@ public class DriverRepository {
     }
 
     // Delete
-    public void remove(String bus_uid){
-        em.remove(findByUid(bus_uid));
+    public void remove(String findBusUid){
+//        em.remove(findByUid(bus_uid));
+        Driver d = findByUid(findBusUid);
+        String bu = d.getBusUid();
+        Long sid = d.getId();
+        System.out.println("bu : " + bu + "sid : " + sid);
+        em.createQuery("DELETE FROM Driver WHERE Driver.bus_uid=:findBusUid", Driver.class)
+                .setParameter("findBusUid", bu)
+                .getSingleResult();
+        em.createQuery("UPDATE Driver d SET id = id - 1 WHERE id > :sid", Driver.class)
+                .setParameter("sid", sid)
+                .getResultList();
     }
 
 

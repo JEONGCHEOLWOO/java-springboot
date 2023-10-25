@@ -55,7 +55,8 @@ public class DriverService {
         return driverRepository.findByUid(busUid);
     }
 
-    public void deleteDriver(String busUid){ driverRepository.findByUid(busUid);}
+    public void deleteDriver(String busUid){ driverRepository.remove(busUid);}
+
 
 
     // 기사님 수정 ( 승객이 등록될 때 수정됨 )
