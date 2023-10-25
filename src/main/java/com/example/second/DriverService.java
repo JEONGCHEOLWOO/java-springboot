@@ -64,15 +64,19 @@ public class DriverService {
         Driver updateDriver = driverRepository.findByUid(bus_uid);
         if(name != null){
             updateDriver.setName(name);
+            System.out.println("error name");
         }
         if(phone_num != null){
             updateDriver.setPhone_num(phone_num);
+            System.out.println("error phone_num");
         }
         if(company != null){
             updateDriver.setCompany(company);
+            System.out.println("error company");
         }
         if(bus_num != null){
             updateDriver.setBus_num(bus_num);
+            System.out.println("error bus_num");
         }
 
         driverRepository.save(updateDriver); // 변경 내용을 저장
