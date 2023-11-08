@@ -1,4 +1,4 @@
-package com.example.second;
+package com.example.Bus.Model.Dto;
 import java.util.*;
 
 public class BusStop {
@@ -7,9 +7,6 @@ public class BusStop {
 
     private List<String> nearStationNames;
     private List<String> nearStationUIDs;
-    private List<String> busRouteId;
-    private List<String> busNum;
-    private List<String> stId;
 
     // Getter & Setter
     public List<String> getStationNames(){
@@ -23,7 +20,6 @@ public class BusStop {
     public List<String> getNearStationName() {
         return nearStationNames;
     }
-
 
     public void setNearStationName(String nearStationName) {
         if (nearStationNames.size() < 5) {
@@ -47,36 +43,4 @@ public class BusStop {
         }
     }
 
-    public List<String> getBusRouteId() {
-        return busRouteId;
-    }
-
-    public void setBusRouteId(String busRouteId) {
-        this.busRouteId.add(busRouteId);
-    }
-
-    public List<String> getBusNum() {
-        return busNum;
-    }
-
-    public void setBusNum(String busNum) {
-        this.busNum.add(busNum);
-    }
-
-    public List<String> getStId() {
-        return stId;
-    }
-
-    public void setStId(List<String> stId) {
-        this.stId = stId;
-    }
-
-    public BusStop(){
-        this.stationNames = new ArrayList<>();
-        this.nearStationNames = new ArrayList<>();
-        this.nearStationUIDs = new ArrayList<>();
-        this.busNum = new ArrayList<>();
-        this.busRouteId = new ArrayList<>();
-        this.stId = new ArrayList<>();
-    }
 }

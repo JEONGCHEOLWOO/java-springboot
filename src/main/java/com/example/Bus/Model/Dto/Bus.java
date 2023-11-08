@@ -1,4 +1,4 @@
-package com.example.second;
+package com.example.Bus.Model.Dto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,16 @@ public class Bus {
     private List<String> arriveBusDir;        // 버스의 방향
     private List<String> currentBusStop; // 현재 버스 정류장 번호
     private List<String> busRoutedId; //  현재 정류장에서의 노선 ID? 암튼 노선 ID
-    private List<String> stId; // 정류소 ID
+
+    private String arsId; // 정류소고유번호
+
+    public String getArsId() {
+        return arsId;
+    }
+
+    public void setArsId(String arsId) {
+        this.arsId = arsId;
+    }
 
     // Getter & Setter
     public List<String> getArriveBusNum() {
@@ -79,23 +88,4 @@ public class Bus {
         this.busRoutedId.add(busRoutedId);
     }
 
-    public List<String> getStId() {
-        return stId;
-    }
-
-    public void setStId(String stId) {
-        this.stId.add(stId);
-    }
-
-    public Bus(){
-        this.arriveBusNum = new ArrayList<>();
-        this.arriveBusFirstTime = new ArrayList<>();
-        this.arriveBusSecondTime = new ArrayList<>();
-        this.arriveBusDir = new ArrayList<>();
-        this.arriveBusFirstNum = new ArrayList<>();
-        this.arriveBusSecondNum = new ArrayList<>();
-        this.currentBusStop = new ArrayList<>();
-        this.busRoutedId = new ArrayList<>();
-        this.stId = new ArrayList<>();
-    }
 }

@@ -1,6 +1,6 @@
-package com.example.second;
+package com.example.Bus.Api;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
+import com.example.Bus.Model.Dto.BusStop;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,15 +28,16 @@ public class BusRouteAllListController {
     @GetMapping("/getArrInfoByRouteAll")
     public BusStop getArrInfoByRouteAllList(@RequestParam String busRouteId) throws IOException {
         BusStop busStop = new BusStop();
-    // http://localhost:8080/getArrInfoByRouteAll?busRouteId=100100118 형식으로 사용
+        // http://10.20.100.31:8080/getArrInfoByRouteAll?busRouteId=100100118 형식으로 사용
         StringBuilder urlBuilder = new StringBuilder("http://ws.bus.go.kr/api/rest/arrive/getArrInfoByRouteAll"); /*URL*/
-        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=0Fdhoh8PtruSsgs%2FDtWVvlxqcjTWEI7QPfeDB1SwDPbX311RBVfaatvVkZvZRum3gM0QwziF2OJts4FG11Y1uw%3D%3D"); /*Service Key*/
+        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=t2qs2a1o15tXR1NhKWY%2FTplsMnvey2e3kTFt8BIlR8dJ6JsaALNvYI6%2B5dKPSJbl%2FJ9C0dF7%2Boi2NwGJKHikSQ%3D%3D"); /*Service Key*/
         urlBuilder.append("&" + URLEncoder.encode("busRouteId","UTF-8") + "=" + URLEncoder.encode(busRouteId, "UTF-8")); /*노선ID*/
         URL url = new URL(urlBuilder.toString());
-
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
         conn.setRequestMethod("GET");
         conn.setRequestProperty("Content-type", "application/json");
+
         System.out.println("Response code: " + conn.getResponseCode());
         BufferedReader rd;
 
@@ -92,7 +93,7 @@ public class BusRouteAllListController {
 
                         // BusStop 객체를 생성하고 정류소명, 노선ID, 번호를 설정한 뒤 리스트에 추가
                         busStop.setStationNames(stationName);
-                        busStop.setBusRouteId(busRouteId);
+//                        busStop.setBusRouteId(busRouteId);
 //                        busStop.setBusNum(plainNo1);
 //                        busStop.setRouteId();
 //                        busStops.setBusNum();

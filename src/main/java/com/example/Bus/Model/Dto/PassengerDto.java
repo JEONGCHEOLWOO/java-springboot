@@ -1,44 +1,31 @@
-package com.example.second;
+package com.example.Bus.Model.Dto;
 
-import jakarta.persistence.*;
-import lombok.Data;
+public class PassengerDto {
 
-import java.util.ArrayList;
-import java.util.List;
-
-@Entity
-@Data
-public class Passenger {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // 자동으로 생성되는 기본 키
-    @Column(name = "id") // Primary Key
-    private Integer id;
-    // 버스 정류장 이름
-    @Column(name = "start")
+    // 버스 정류장 시작 지점 이름
     private String start;
-    // 버스 번호판 uid
-    @Column(name = "bus_uid")
-    private String bus_uid;
-    // 유저의 아이디
-    @Column(name = "user_id")
-    private String user_id;
-    // 내릴지 말지 boolean값
-    @Column(name = "end")
-    private String end;
-    // start point의 routeID : 노선 아이디
-    @Column(name = "start_route_id")
-    private String start_route_id;
-    // end point의 routeID : 노선 아이디
-    @Column(name = "end_route_id")
-    private String end_route_id;
 
+    // 버스 번호판 uid
+    private String bus_uid;
+
+    // 유저의 아이디
+    private String user_id;
+
+    // 버스 도착 지점
+    private String arrive;
+
+    // start point의 routeID : 노선 아이디
+    private String start_route_id;
+
+    // end point의 routeID : 노선 아이디
+    private String end_route_id;
 
     public String getStart() {
         return start;
     }
 
     public void setStart(String start) {
-        this.start = (start);
+        this.start = start;
     }
 
     public String getBus_uid() {
@@ -46,7 +33,7 @@ public class Passenger {
     }
 
     public void setBus_uid(String bus_uid) {
-        this.bus_uid = (bus_uid);
+        this.bus_uid = bus_uid;
     }
 
     public String getUser_id() {
@@ -54,15 +41,15 @@ public class Passenger {
     }
 
     public void setUser_id(String user_id) {
-        this.user_id = (user_id);
+        this.user_id = user_id;
     }
 
-    public String getEnd() {
-        return end;
+    public String getArrive() {
+        return arrive;
     }
 
-    public void setEnd(String end) {
-        this.end = (end);
+    public void setArrive(String arrive) {
+        this.arrive = arrive;
     }
 
     public String getStart_route_id() {
@@ -79,8 +66,5 @@ public class Passenger {
 
     public void setEnd_route_id(String end_route_id) {
         this.end_route_id = end_route_id;
-    }
-
-    public Passenger(){
     }
 }
