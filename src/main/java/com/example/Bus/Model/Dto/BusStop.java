@@ -71,4 +71,12 @@ public class BusStop {
         this.stId = stId;
     }
 
+    public BusStop(){
+        this.stationNames = new ArrayList<>();
+        this.nearStationNames = new ArrayList<>();
+        this.nearStationUIDs = new ArrayList<>();
+        this.busNum = new ArrayList<>();
+        this.busRouteId = new ArrayList<>();
+        this.stId = new ArrayList<>();
+    }
 }

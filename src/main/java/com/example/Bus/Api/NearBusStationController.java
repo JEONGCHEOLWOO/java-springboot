@@ -26,7 +26,7 @@ public class NearBusStationController {
         BusStop busStop = new BusStop();
         // http://localhost:8080/getStationByPos?X=126.9407&Y=37.56223 형태로 사용해야함
         StringBuilder urlBuilder = new StringBuilder("http://ws.bus.go.kr/api/rest/stationinfo/getStationByPos"); /*URL*/
-        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=0Fdhoh8PtruSsgs%2FDtWVvlxqcjTWEI7QPfeDB1SwDPbX311RBVfaatvVkZvZRum3gM0QwziF2OJts4FG11Y1uw%3D%3D"); /*Service Key*/
+        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=t2qs2a1o15tXR1NhKWY%2FTplsMnvey2e3kTFt8BIlR8dJ6JsaALNvYI6%2B5dKPSJbl%2FJ9C0dF7%2Boi2NwGJKHikSQ%3D%3D"); /*Service Key*/
         urlBuilder.append("&" + URLEncoder.encode("tmX","UTF-8") + "=" + URLEncoder.encode(X, "UTF-8")); /*기준위치 X*/
         urlBuilder.append("&" + URLEncoder.encode("tmY","UTF-8") + "=" + URLEncoder.encode(Y, "UTF-8")); /*기준위치 Y*/
         urlBuilder.append("&" + URLEncoder.encode("radius","UTF-8") + "=" + URLEncoder.encode("1000", "UTF-8")); /*단위 m(미터)*/
@@ -91,6 +91,7 @@ public class NearBusStationController {
                     String stationId = getTagValue("stationId", eElement);
                     String stationNm = getTagValue("stationNm", eElement);
                     String arsId = getTagValue("arsId", eElement);
+
 
                     if (stationId != null) {
                         System.out.println("정류소 번호: " + arsId);

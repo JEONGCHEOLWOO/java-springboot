@@ -97,4 +97,16 @@ public class Bus {
     public void setStId(String stId) {
         this.stId.add(stId);
     }
+
+    public Bus(){
+        this.arriveBusNum = new ArrayList<>();
+        this.arriveBusFirstTime = new ArrayList<>();
+        this.arriveBusSecondTime = new ArrayList<>();
+        this.arriveBusDir = new ArrayList<>();
+        this.arriveBusFirstNum = new ArrayList<>();
+        this.arriveBusSecondNum = new ArrayList<>();
+        this.currentBusStop = new ArrayList<>();
+        this.busRoutedId = new ArrayList<>();
+        this.stId = new ArrayList<>();
+    }
 }
