@@ -15,6 +15,8 @@ public class Bus {
 
     private String arsId; // 정류소고유번호
 
+    private List<String> stId; // 정류소 ID
+
     public String getArsId() {
         return arsId;
     }
@@ -88,4 +90,11 @@ public class Bus {
         this.busRoutedId.add(busRoutedId);
     }
 
+    public List<String> getStId() {
+        return stId;
+    }
+
+    public void setStId(String stId) {
+        this.stId.add(stId);
+    }
 }

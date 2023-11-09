@@ -7,6 +7,9 @@ public class BusStop {
 
     private List<String> nearStationNames;
     private List<String> nearStationUIDs;
+    private List<String> busRouteId;
+    private List<String> busNum;
+    private List<String> stId;
 
     // Getter & Setter
     public List<String> getStationNames(){
@@ -20,6 +23,7 @@ public class BusStop {
     public List<String> getNearStationName() {
         return nearStationNames;
     }
+
 
     public void setNearStationName(String nearStationName) {
         if (nearStationNames.size() < 5) {
@@ -41,6 +45,30 @@ public class BusStop {
             // 5개의 항목만 허용하려면 추가할 수 없음
             throw new IllegalStateException("최대 5개 항목까지만 허용됩니다.");
         }
+    }
+
+    public List<String> getBusRouteId() {
+        return busRouteId;
+    }
+
+    public void setBusRouteId(String busRouteId) {
+        this.busRouteId.add(busRouteId);
+    }
+
+    public List<String> getBusNum() {
+        return busNum;
+    }
+
+    public void setBusNum(String busNum) {
+        this.busNum.add(busNum);
+    }
+
+    public List<String> getStId() {
+        return stId;
+    }
+
+    public void setStId(List<String> stId) {
+        this.stId = stId;
     }
 
 }
