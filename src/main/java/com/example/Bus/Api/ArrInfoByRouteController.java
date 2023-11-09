@@ -2,6 +2,7 @@ package com.example.Bus.Api;
 
 import com.example.Bus.Model.Dto.Bus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -15,14 +16,14 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.List;
 
 public class ArrInfoByRouteController {
-    @GetMapping("/getArrInfoByRoute")
-    public static void ABList2(String stId, String busRouteId, String ord, Bus bus) throws IOException {
-        // http://10.20.100.31:8080/getArrInfoByRouteAll?busRouteId=100100118 형식으로 사용
-
+    public static Bus ABList2(String stId, String busRouteId, String ord) throws IOException {
+        // http://localhost:8080/getArrInfoByRoute?stId=112000035&busRouteId=100100342&ord=28 형식으로 사용
+        Bus bus = new Bus();
         StringBuilder urlBuilder = new StringBuilder("http://ws.bus.go.kr/api/rest/arrive/getArrInfoByRoute"); /*URL*/
-        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=0Fdhoh8PtruSsgs%2FDtWVvlxqcjTWEI7QPfeDB1SwDPbX311RBVfaatvVkZvZRum3gM0QwziF2OJts4FG11Y1uw%3D%3D"); /*Service Key*/
+        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=t2qs2a1o15tXR1NhKWY%2FTplsMnvey2e3kTFt8BIlR8dJ6JsaALNvYI6%2B5dKPSJbl%2FJ9C0dF7%2Boi2NwGJKHikSQ%3D%3D"); /*Service Key*/
         urlBuilder.append("&" + URLEncoder.encode("stId","UTF-8") + "=" + URLEncoder.encode(stId, "UTF-8")); /*정류소 고유 ID*/
         urlBuilder.append("&" + URLEncoder.encode("busRouteId","UTF-8") + "=" + URLEncoder.encode(busRouteId, "UTF-8")); /*노선 ID*/
         urlBuilder.append("&" + URLEncoder.encode("ord","UTF-8") + "=" + URLEncoder.encode(ord, "UTF-8")); /*정류소 순번*/
@@ -37,7 +38,7 @@ public class ArrInfoByRouteController {
         BufferedReader rd;
         if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
             rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            getData(url, bus);
+            bus = getData(url);
         } else {
             rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
         }
@@ -48,8 +49,11 @@ public class ArrInfoByRouteController {
         while ((line = rd.readLine()) != null) {
             sb.append(line);
         }
+
         rd.close();
         conn.disconnect();
+
+        return bus;
     }
 
     // tag값의 정보를 가져오는 메소드
@@ -61,7 +65,8 @@ public class ArrInfoByRouteController {
         return nValue.getNodeValue();
     }
 
-    public static void getData(URL url, Bus bus) {
+    public static Bus getData(URL url) {
+        Bus bus = new Bus();
         try{
             DocumentBuilderFactory dbFactoty = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactoty.newDocumentBuilder();
@@ -69,12 +74,12 @@ public class ArrInfoByRouteController {
 
             // root tag
             doc.getDocumentElement().normalize();
-            System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
+//            System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
             // doc.getDocumentElement().getNodeName()는 XML의 최상위 tag값 ; Root element : <ServiceResult>
 
             // 파싱할 tag
             NodeList nList = doc.getElementsByTagName("itemList");
-            System.out.println("파싱할 리스트 수 : "+ nList.getLength());
+//            System.out.println("파싱할 리스트 수 : "+ nList.getLength());
 
             for(int temp = 0; temp < nList.getLength(); temp++){
                 Node nNode = nList.item(temp);
@@ -88,10 +93,10 @@ public class ArrInfoByRouteController {
                     String busRouteId = getTagValue("busRouteId", eElement);
                     String arsId = getTagValue("arsId", eElement);
 
-                    System.out.println("첫번째 도착 예정 차량 번호  : " + plainNo1);
-                    System.out.println("두번째 도착 예정 차량 번호  : " + plainNo2);
-                    System.out.println("노선 ID  : " + busRouteId);
-                    System.out.println("정류소 번호  : " + arsId);
+//                    System.out.println("첫번째 도착 예정 차량 번호  : " + plainNo1);
+//                    System.out.println("두번째 도착 예정 차량 번호  : " + plainNo2);
+//                    System.out.println("노선 ID  : " + busRouteId);
+//                    System.out.println("정류소 번호  : " + arsId);
                     bus.setArriveBusFirstNum(plainNo1);
                     bus.setArriveBusSecondNum(plainNo2);
                     bus.setBusRoutedId(busRouteId); // 노선 ID 넘겨줘서 해당 버스가 가는 노선 전부 띄워주기
@@ -101,5 +106,6 @@ public class ArrInfoByRouteController {
         } catch (Exception e){
             e.printStackTrace();
         }
+        return bus;
     }
 }

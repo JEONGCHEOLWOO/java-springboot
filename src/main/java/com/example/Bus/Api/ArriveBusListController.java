@@ -16,6 +16,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.List;
 
 //@CrossOrigin(origins = "http://bus-project.kro.kr/") // 리액트 네이티브와 스프링 부트의 포트를 통일하기 위함
 @RestController
@@ -67,6 +68,7 @@ public class ArriveBusListController {
 
     public static Bus getData(URL url) {
         Bus bus = new Bus();
+        Bus data = new Bus();
         try{
             DocumentBuilderFactory dbFactoty = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactoty.newDocumentBuilder();
@@ -97,16 +99,28 @@ public class ArriveBusListController {
                     String staOrd = getTagValue("staOrd", eElement); // 순번
 
                     // ABLIST2를 요청하자. 첫번째 도착 버스의 번호판, 두번째 도착 버스의 번호판을 가져오자.
-                    ArrInfoByRouteController.ABList2(stId, busRouteId,staOrd, bus);
+                    data = ArrInfoByRouteController.ABList2(stId, busRouteId,staOrd);
 
+                    String arriveBusFirstNum = data.getArriveBusFirstNum().get(0);
+                    String arriveBusSecondNum = data.getArriveBusSecondNum().get(0);
+
+                    System.out.println("정류소 고유 ID  : " + stId);
+                    System.out.println("노선 ID  : " + busRouteId);
+                    System.out.println("순번  : " + staOrd);
                     System.out.println("첫번째 도착 예정 버스  : " + arrmsg1);
                     System.out.println("두번째 도착 예정 버스  : " + arrmsg2);
                     System.out.println("버스 번호  : " + busRouteAbrv);
                     System.out.println("방향  : " + adirection);
+
+                    System.out.println("첫번째 도착 예정 차량 번호  : " + arriveBusFirstNum);
+                    System.out.println("두번째 도착 예정 차량 번호  : " + arriveBusSecondNum);
+
                     bus.setArriveBusFirstTime(arrmsg1);
                     bus.setArriveBusSecondTime(arrmsg2);
                     bus.setArriveBusNum(busRouteAbrv);
                     bus.setArriveBusDir(adirection);
+                    bus.setArriveBusFirstNum(arriveBusFirstNum);
+                    bus.setArriveBusSecondNum(arriveBusSecondNum);
                 }
             }
         } catch (Exception e){
