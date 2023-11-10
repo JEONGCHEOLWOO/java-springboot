@@ -18,4 +18,7 @@ public interface UserMapper {
     List<UserDto> findSearch(UserDto userDto);
 
     List<UserDto> login(UserDto userDto);
+
+    UserDto checkBlind(UserDto userDto);
+
 }

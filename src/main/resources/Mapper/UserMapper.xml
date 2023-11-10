@@ -43,5 +43,11 @@
         where user_id = #{user_id} and password = #{password}<!-- $표시 -> statement -->
     </select>
 
+    <!-- 사용자의 Blind 여부 -->
+    <select id="checkBlind" parameterType="UserDto" resultType="UserDto">
+        SELECT blind
+        FROM user
+        WHERE user_id = #{user_id}
+    </select>
 
 </mapper>

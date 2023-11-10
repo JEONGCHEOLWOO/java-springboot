@@ -18,4 +18,6 @@ public interface UserService {
 
     List<UserDto> login(UserDto userDto);
 
+    UserDto checkBlind(UserDto userDto);
+
 }

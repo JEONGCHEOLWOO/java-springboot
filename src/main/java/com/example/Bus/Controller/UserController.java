@@ -17,6 +17,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+
     @PostMapping("/user/create")
     public int regist(@RequestParam(name = "user_id") String user_id,
                          @RequestParam("name") String name,
@@ -72,6 +73,16 @@ public class UserController {
         List<UserDto> list = userService.findAll();
         mv.put("list", list);
         return mv;
+    }
+
+    @PostMapping("/user/checkBlind")
+    public UserDto checkBlind(@RequestBody Map<String, String> requestBody) {
+        String userId = requestBody.get("user_id");
+        UserDto userDto = new UserDto();
+        userDto.setUser_id(userId);
+
+        UserDto resultUserDto = userService.checkBlind(userDto);
+        return resultUserDto;
     }
 
 }

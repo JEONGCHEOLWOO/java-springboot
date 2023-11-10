@@ -31,6 +31,11 @@ public class UserServiceImpl implements UserService{
     @Override
     public List<UserDto> login(UserDto userDto) { return userMapper.login(userDto); }
 
+    @Override
+    public UserDto checkBlind(UserDto userDto) {
+        return userMapper.checkBlind(userDto);
+    }
+
 
 //    // Create, Update
 //    public void save(UserDto user){
