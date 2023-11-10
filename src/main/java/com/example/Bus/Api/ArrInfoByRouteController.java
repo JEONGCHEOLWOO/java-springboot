@@ -18,7 +18,9 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.List;
 
+@RestController
 public class ArrInfoByRouteController {
+    @GetMapping("/getArrInfoByRoute")
     public static Bus ABList2(String stId, String busRouteId, String ord) throws IOException {
         // http://localhost:8080/getArrInfoByRoute?stId=112000035&busRouteId=100100342&ord=28 형식으로 사용
         Bus bus = new Bus();
@@ -74,29 +76,29 @@ public class ArrInfoByRouteController {
 
             // root tag
             doc.getDocumentElement().normalize();
-//            System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
+            System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
             // doc.getDocumentElement().getNodeName()는 XML의 최상위 tag값 ; Root element : <ServiceResult>
 
             // 파싱할 tag
             NodeList nList = doc.getElementsByTagName("itemList");
-//            System.out.println("파싱할 리스트 수 : "+ nList.getLength());
+            System.out.println("파싱할 리스트 수 : "+ nList.getLength());
 
             for(int temp = 0; temp < nList.getLength(); temp++){
                 Node nNode = nList.item(temp);
                 if(nNode.getNodeType() == Node.ELEMENT_NODE){
 
                     Element eElement = (Element) nNode;
-                    System.out.println("######################");
+//                    System.out.println("######################");
 
                     String plainNo1 = getTagValue("plainNo1", eElement);
                     String plainNo2 = getTagValue("plainNo2", eElement);
                     String busRouteId = getTagValue("busRouteId", eElement);
                     String arsId = getTagValue("arsId", eElement);
 
-//                    System.out.println("첫번째 도착 예정 차량 번호  : " + plainNo1);
-//                    System.out.println("두번째 도착 예정 차량 번호  : " + plainNo2);
-//                    System.out.println("노선 ID  : " + busRouteId);
-//                    System.out.println("정류소 번호  : " + arsId);
+                    System.out.println("첫번째 도착 예정 차량 번호  : " + plainNo1);
+                    System.out.println("두번째 도착 예정 차량 번호  : " + plainNo2);
+                    System.out.println("노선 ID  : " + busRouteId);
+                    System.out.println("정류소 번호  : " + arsId);
                     bus.setArriveBusFirstNum(plainNo1);
                     bus.setArriveBusSecondNum(plainNo2);
                     bus.setBusRoutedId(busRouteId); // 노선 ID 넘겨줘서 해당 버스가 가는 노선 전부 띄워주기
