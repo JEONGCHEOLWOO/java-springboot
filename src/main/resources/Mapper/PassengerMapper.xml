@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.00//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.Bus.Model.Mapper.PassengerMappers">
+<mapper namespace="com.example.Bus.Model.Mapper.PassengerMapper">
 
     <!-- 탑승자 등록 -->
     <insert id="regist" parameterType="PassengerDto">

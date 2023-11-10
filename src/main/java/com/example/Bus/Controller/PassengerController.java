@@ -28,10 +28,10 @@ public class PassengerController {
 
         PassengerDto passengerDto = new PassengerDto();
         passengerDto.setStart(start);
-        passengerDto.setStart_route_id(start_route_id);
         passengerDto.setBus_uid(bus_uid);
         passengerDto.setUser_id(user_id);
         passengerDto.setArrive(arrive);
+        passengerDto.setStart_route_id(start_route_id);
         passengerDto.setEnd_route_id(end_route_id);
 
         int resultCnt = passengerService.regist(passengerDto);
