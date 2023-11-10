@@ -95,10 +95,10 @@ public class ArrInfoByRouteController {
                     String busRouteId = getTagValue("busRouteId", eElement);
                     String arsId = getTagValue("arsId", eElement);
 
-                    System.out.println("첫번째 도착 예정 차량 번호  : " + plainNo1);
-                    System.out.println("두번째 도착 예정 차량 번호  : " + plainNo2);
-                    System.out.println("노선 ID  : " + busRouteId);
-                    System.out.println("정류소 번호  : " + arsId);
+//                    System.out.println("첫번째 도착 예정 차량 번호  : " + plainNo1);
+//                    System.out.println("두번째 도착 예정 차량 번호  : " + plainNo2);
+//                    System.out.println("노선 ID  : " + busRouteId);
+//                    System.out.println("정류소 번호  : " + arsId);
                     bus.setArriveBusFirstNum(plainNo1);
                     bus.setArriveBusSecondNum(plainNo2);
                     bus.setBusRoutedId(busRouteId); // 노선 ID 넘겨줘서 해당 버스가 가는 노선 전부 띄워주기

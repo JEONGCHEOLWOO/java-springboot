@@ -104,6 +104,7 @@ public class ArriveBusListController {
 
                     String arriveBusFirstNum = data.getArriveBusFirstNum().get(0);
                     String arriveBusSecondNum = data.getArriveBusSecondNum().get(0);
+                    String currentBusStop = data.getCurrentBusStop().get(0);
 
                     System.out.println("정류소 고유 ID  : " + stId);
                     System.out.println("노선 ID  : " + busRouteId);
@@ -112,10 +113,12 @@ public class ArriveBusListController {
                     System.out.println("두번째 도착 예정 버스  : " + arrmsg2);
                     System.out.println("버스 번호  : " + busRouteAbrv);
                     System.out.println("방향  : " + adirection);
-
+                    System.out.println("정류소 번호 : " + currentBusStop);
                     System.out.println("첫번째 도착 예정 차량 번호  : " + arriveBusFirstNum);
                     System.out.println("두번째 도착 예정 차량 번호  : " + arriveBusSecondNum);
 
+                    bus.setArsId(currentBusStop);
+                    bus.setBusRoutedId(busRouteId);
                     bus.setArriveBusFirstTime(arrmsg1);
                     bus.setArriveBusSecondTime(arrmsg2);
                     bus.setArriveBusNum(busRouteAbrv);
